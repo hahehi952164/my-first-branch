@@ -4,139 +4,379 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#07152f">
-  <meta name="description" content="用 GitHub Copilot 製作的第一個個人介紹網頁。">
-  <title>你好，歡迎來到我的小天地</title>
+  <meta name="description" content="收藏靈感、未完成點子與創作，讓每個念頭都有自己的位置。">
+  <title>靈感收集所｜我的小天地</title>
   <style>
     :root {
       color-scheme: dark;
+      --page: #07152f;
+      --page-glow: rgba(73, 113, 226, .22);
+      --surface: rgba(18, 35, 69, .74);
+      --surface-strong: rgba(22, 42, 81, .94);
+      --surface-soft: rgba(99, 145, 255, .09);
+      --line: rgba(187, 207, 255, .17);
+      --text: #f4f7ff;
+      --muted: #b7c5df;
+      --subtle: #8293b2;
+      --accent: #94b9ff;
+      --accent-2: #87e2e4;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .28);
       font-family: "Inter", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-      background: #07152f;
-      color: #f4f7ff;
+      background: var(--page);
+      color: var(--text);
+    }
+
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --page: #edf4ff;
+      --page-glow: rgba(106, 145, 226, .20);
+      --surface: rgba(255, 255, 255, .72);
+      --surface-strong: rgba(255, 255, 255, .94);
+      --surface-soft: rgba(104, 143, 226, .09);
+      --line: rgba(74, 103, 158, .17);
+      --text: #172541;
+      --muted: #536481;
+      --subtle: #72809a;
+      --accent: #426db5;
+      --accent-2: #238a91;
+      --shadow: 0 24px 70px rgba(46, 69, 111, .14);
     }
 
     * { box-sizing: border-box; }
-
+    html { scroll-behavior: smooth; }
     body {
+      min-width: 320px;
       min-height: 100vh;
       margin: 0;
-      display: grid;
-      place-items: center;
-      padding: 28px;
-      overflow: hidden;
       background:
-        radial-gradient(ellipse at 18% 15%, rgba(73, 113, 226, .22), transparent 38%),
-        radial-gradient(ellipse at 88% 82%, rgba(72, 196, 209, .13), transparent 34%),
-        #07152f;
+        radial-gradient(ellipse at 18% 8%, var(--page-glow), transparent 36%),
+        radial-gradient(ellipse at 88% 78%, rgba(72, 196, 209, .12), transparent 34%),
+        var(--page);
+      color: var(--text);
+      transition: background-color .25s ease, color .25s ease;
     }
-
-    .card {
-      position: relative;
-      width: min(100%, 620px);
-      padding: clamp(36px, 8vw, 64px);
-      overflow: hidden;
-      text-align: center;
-      border: 1px solid rgba(187, 207, 255, .18);
-      border-radius: 28px;
-      background: linear-gradient(145deg, rgba(22, 42, 81, .94), rgba(13, 28, 57, .96));
-      box-shadow: 0 28px 90px rgba(0, 0, 0, .38), inset 0 1px rgba(255, 255, 255, .06);
-      animation: rise-in .7s ease-out both;
+    button, input, textarea { font: inherit; }
+    button { color: inherit; }
+    a { color: var(--accent); }
+    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--accent-2);
+      outline-offset: 3px;
     }
-
-    .card::before {
-      position: absolute;
-      top: 0;
-      left: 16%;
-      width: 68%;
-      height: 1px;
-      content: "";
-      background: linear-gradient(90deg, transparent, rgba(143, 191, 255, .9), transparent);
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header { position: sticky; z-index: 10; top: 0; padding: 14px 0; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+    .nav-wrap {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      min-height: 68px; padding: 10px 14px 10px 20px;
+      border: 1px solid var(--line); border-radius: 22px;
+      background: var(--surface); box-shadow: var(--shadow);
     }
-
-    .sparkle {
-      display: grid;
-      width: 68px;
-      height: 68px;
-      margin: 0 auto 25px;
-      place-items: center;
-      border: 1px solid rgba(163, 199, 255, .25);
-      border-radius: 22px;
-      background: rgba(99, 145, 255, .12);
-      font-size: 30px;
-      box-shadow: 0 0 36px rgba(89, 143, 255, .14);
+    .brand { display: inline-flex; align-items: center; gap: 11px; color: var(--text); text-decoration: none; font-weight: 800; white-space: nowrap; }
+    .brand-mark { display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-soft); color: var(--accent); font-size: 21px; }
+    .nav-area { display: flex; align-items: center; gap: 12px; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-link, .icon-button, .menu-button {
+      border: 0; border-radius: 12px; background: transparent; color: var(--muted); cursor: pointer;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
     }
+    .nav-link { min-height: 42px; padding: 0 12px; font-size: .88rem; white-space: nowrap; }
+    .nav-link:hover, .nav-link[aria-current="page"] { background: var(--surface-soft); color: var(--text); }
+    .nav-link[aria-current="page"] { box-shadow: inset 0 -2px var(--accent); }
+    .icon-button, .menu-button { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid var(--line); background: var(--surface-soft); font-size: 1.05rem; }
+    .icon-button:hover, .menu-button:hover { transform: translateY(-1px); color: var(--text); }
+    .menu-button { display: none; }
 
-    .eyebrow {
-      margin: 0 0 14px;
-      color: #94b9ff;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
+    main { min-height: calc(100vh - 170px); padding: 36px 0 70px; }
+    .view { animation: fade-up .38s ease both; }
+    .view[hidden] { display: none; }
+    .glass { border: 1px solid var(--line); border-radius: 28px; background: var(--surface); box-shadow: var(--shadow); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .hero { position: relative; overflow: hidden; padding: clamp(32px, 7vw, 72px); }
+    .hero::after { position: absolute; right: -70px; bottom: -155px; width: 350px; height: 350px; border: 1px solid var(--line); border-radius: 50%; content: ""; box-shadow: 0 0 0 28px rgba(148,185,255,.025), 0 0 0 58px rgba(148,185,255,.02); pointer-events: none; }
+    .eyebrow { margin: 0 0 14px; color: var(--accent); font-size: .78rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    h1, h2, h3, p { overflow-wrap: anywhere; }
+    h1 { max-width: 780px; margin: 0; font-size: clamp(2.15rem, 6vw, 4.5rem); line-height: 1.18; letter-spacing: -.035em; text-wrap: balance; }
+    .hero-copy { max-width: 640px; margin: 22px 0 0; color: var(--muted); font-size: clamp(1rem, 2vw, 1.12rem); line-height: 1.9; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .primary-button, .secondary-button { min-height: 48px; padding: 0 20px; border: 1px solid var(--line); border-radius: 14px; cursor: pointer; font-weight: 750; transition: transform .2s ease, filter .2s ease; }
+    .primary-button { background: linear-gradient(110deg, #83b4ff, #87e2e4); color: #081832; box-shadow: 0 10px 28px rgba(92, 163, 255, .2); }
+    .secondary-button { background: var(--surface-soft); color: var(--text); }
+    .primary-button:hover, .secondary-button:hover { transform: translateY(-2px); filter: brightness(1.05); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin: 42px 2px 18px; }
+    .section-heading h2 { margin: 0; font-size: clamp(1.4rem, 3vw, 2rem); }
+    .section-heading p { max-width: 520px; margin: 0; color: var(--muted); line-height: 1.7; }
+    .preview-grid, .items-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .preview-card, .item-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); box-shadow: 0 14px 38px rgba(0,0,0,.1); }
+    .preview-card { padding: 23px; cursor: pointer; text-align: left; transition: transform .2s ease, border-color .2s ease; }
+    .preview-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .preview-card .preview-label { color: var(--accent); font-size: .76rem; font-weight: 800; letter-spacing: .12em; }
+    .preview-card h3 { margin: 12px 0 8px; font-size: 1.18rem; }
+    .preview-card p { margin: 0; color: var(--muted); line-height: 1.75; }
+    .page-intro { padding: clamp(25px, 5vw, 44px); margin-bottom: 22px; }
+    .page-intro h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    .page-intro p:last-child { max-width: 720px; margin: 14px 0 0; color: var(--muted); line-height: 1.85; }
+    .item-card { display: flex; flex-direction: column; }
+    .item-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-soft); }
+    .item-body { display: flex; flex: 1; flex-direction: column; padding: 22px; }
+    .item-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--accent); font-size: .76rem; font-weight: 750; letter-spacing: .04em; }
+    .tag { padding: 5px 9px; border: 1px solid var(--line); border-radius: 99px; background: var(--surface-soft); }
+    .item-card h2 { margin: 0 0 10px; font-size: 1.35rem; }
+    .item-description { flex: 1; margin: 0; color: var(--muted); line-height: 1.8; white-space: pre-line; }
+    .item-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .text-link { display: inline-flex; align-items: center; min-height: 38px; padding: 0 12px; border: 1px solid var(--line); border-radius: 11px; color: var(--accent); text-decoration: none; font-size: .88rem; font-weight: 700; }
+    .text-link:hover { background: var(--surface-soft); }
+    details.contact-box { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 15px; }
+    details.contact-box summary { width: fit-content; color: var(--accent); cursor: pointer; font-size: .9rem; font-weight: 750; }
+    .contact-form { display: grid; gap: 12px; margin-top: 15px; }
+    .contact-form label { display: grid; gap: 6px; color: var(--muted); font-size: .86rem; font-weight: 650; }
+    .contact-form input, .contact-form textarea { width: 100%; min-height: 44px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-soft); color: var(--text); }
+    .contact-form textarea { min-height: 100px; resize: vertical; }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--subtle); }
+    .contact-form .primary-button { width: fit-content; min-height: 43px; }
+    .form-note { margin: 0; color: var(--subtle); font-size: .77rem; line-height: 1.6; }
+    .about-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 20px; }
+    .about-card { padding: clamp(25px, 5vw, 42px); }
+    .about-symbol { display: grid; width: 86px; height: 86px; margin-bottom: 24px; place-items: center; border: 1px solid var(--line); border-radius: 28px; background: var(--surface-soft); color: var(--accent); font-size: 2.4rem; }
+    .about-card h2 { margin: 0 0 12px; }
+    .about-card p { margin: 0 0 14px; color: var(--muted); line-height: 1.9; }
+    .mystery { position: relative; min-height: 440px; display: grid; overflow: hidden; place-items: center; padding: 35px; text-align: center; }
+    .mystery::before, .mystery::after { position: absolute; width: 270px; height: 270px; border: 1px solid var(--line); border-radius: 50%; content: ""; animation: orbit 18s linear infinite; }
+    .mystery::after { width: 390px; height: 390px; animation-direction: reverse; }
+    .mystery-content { position: relative; z-index: 1; max-width: 570px; }
+    .mystery-star { color: var(--accent-2); font-size: 3rem; text-shadow: 0 0 35px rgba(135,226,228,.55); }
+    .mystery h1 { margin: 12px auto; font-size: clamp(2rem, 5vw, 3.4rem); }
+    .mystery p { color: var(--muted); line-height: 1.9; }
+    footer { padding: 0 0 28px; color: var(--subtle); text-align: center; font-size: .82rem; }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    @media (max-width: 900px) {
+      .nav-wrap { flex-wrap: wrap; }
+      .nav-area { gap: 8px; }
+      .nav-links { gap: 0; }
+      .nav-link { padding: 0 8px; font-size: .8rem; }
     }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(1.75rem, 5vw, 2.65rem);
-      line-height: 1.45;
-      letter-spacing: .02em;
-      text-wrap: balance;
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 28px, 560px); }
+      .site-header { padding-top: 9px; }
+      .nav-wrap { min-height: 60px; padding: 8px 10px 8px 14px; }
+      .brand-mark { width: 36px; height: 36px; }
+      .menu-button { display: grid; }
+      .nav-area { margin-left: auto; }
+      .nav-links { display: none; position: absolute; top: calc(100% + 6px); left: 14px; right: 14px; flex-direction: column; align-items: stretch; gap: 4px; padding: 10px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface-strong); box-shadow: var(--shadow); backdrop-filter: blur(18px); }
+      .nav-links.open { display: flex; }
+      .nav-link { width: 100%; min-height: 46px; padding: 0 14px; text-align: left; font-size: .92rem; }
+      main { padding-top: 23px; }
+      .preview-grid, .items-grid, .about-layout { grid-template-columns: 1fr; }
+      .section-heading { align-items: start; flex-direction: column; }
+      .hero::after { right: -190px; }
     }
-
-    .description {
-      max-width: 410px;
-      margin: 20px auto 30px;
-      color: #b7c5df;
-      font-size: 1rem;
-      line-height: 1.9;
-    }
-
-    button {
-      min-height: 52px;
-      padding: 0 26px;
-      border: 0;
-      border-radius: 14px;
-      background: linear-gradient(110deg, #83b4ff, #87e2e4);
-      color: #081832;
-      font: inherit;
-      font-weight: 750;
-      cursor: pointer;
-      box-shadow: 0 10px 28px rgba(92, 163, 255, .2);
-      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-    }
-
-    button:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 14px 32px rgba(92, 163, 255, .3); }
-    button:active { transform: translateY(0); }
-    button:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
-
-    .signature {
-      margin: 30px 0 0;
-      color: #788baa;
-      font-size: .83rem;
-    }
-
-    @keyframes rise-in {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="sparkle" aria-hidden="true">✦</div>
-    <p class="eyebrow">A little introduction</p>
-    <h1>你好，這是我用 GitHub Copilot 做的第一個網頁</h1>
-    <p class="description">歡迎來到我的小天地！這是我的第一個個人介紹頁面，未來還會有更多有趣的作品，敬請期待。</p>
-    <button type="button" id="welcome-button">點我收下歡迎訊息 <span aria-hidden="true">✧</span></button>
-    <p class="signature">用好奇心開始，讓靈感繼續發光。</p>
+  <header class="site-header shell">
+    <div class="nav-wrap">
+      <a class="brand" href="#home" aria-label="靈感收集所，返回主頁" data-page-link="home">
+        <span class="brand-mark" aria-hidden="true">✦</span><span>靈感收集所</span>
+      </a>
+      <div class="nav-area">
+        <nav class="nav-links" id="site-navigation" aria-label="主要導覽">
+          <button class="nav-link" type="button" data-page="home" aria-current="page">主頁</button>
+          <button class="nav-link" type="button" data-page="ideas">各種未完成點子</button>
+          <button class="nav-link" type="button" data-page="favorites">收藏</button>
+          <button class="nav-link" type="button" data-page="creations">創作內容</button>
+          <button class="nav-link" type="button" data-page="about">關於我</button>
+          <button class="nav-link" type="button" data-page="unknown">未名分頁</button>
+        </nav>
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="切換至淺色主題" title="切換深淺色主題"><span aria-hidden="true">☼</span></button>
+        <button class="menu-button" id="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="site-navigation"><span aria-hidden="true">☰</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell" id="main-content">
+    <section class="view" id="view-home" aria-labelledby="home-title">
+      <div class="hero glass">
+        <p class="eyebrow">A small space for ideas</p>
+        <h1 id="home-title">讓靈感有個<br>自在停留的地方。</h1>
+        <p class="hero-copy">歡迎來到我的小小創作宇宙。這裡收集還在發芽的點子、喜歡的事物，以及慢慢完成的作品。希望你也能在這裡找到一點靈感。</p>
+        <div class="hero-actions">
+          <button class="primary-button" type="button" data-go="ideas">逛逛未完成點子 <span aria-hidden="true">→</span></button>
+          <button class="secondary-button" type="button" data-go="creations">看看我的創作</button>
+        </div>
+      </div>
+      <div class="section-heading">
+        <div><p class="eyebrow">A little glimpse</p><h2>各區精選預覽</h2></div>
+        <p>每個想法都值得被記下來；點選卡片就可以前往對應的收藏區。</p>
+      </div>
+      <div class="preview-grid" id="home-previews"></div>
+    </section>
+
+    <section class="view" id="view-ideas" aria-labelledby="ideas-title" hidden>
+      <div class="page-intro glass"><p class="eyebrow">Still growing</p><h1 id="ideas-title">各種未完成點子</h1><p>未完成並不代表不重要。這裡放著正在發芽的計畫、片段與靈感，歡迎在每個項目下方留下想法。</p></div>
+      <div class="items-grid" id="ideas-list"></div>
+    </section>
+
+    <section class="view" id="view-favorites" aria-labelledby="favorites-title" hidden>
+      <div class="page-intro glass"><p class="eyebrow">Collected with care</p><h1 id="favorites-title">收藏</h1><p>那些讓我停下來多看一眼、想再讀一次或想好好保存的事物，都收在這裡。</p></div>
+      <div class="items-grid" id="favorites-list"></div>
+    </section>
+
+    <section class="view" id="view-creations" aria-labelledby="creations-title" hidden>
+      <div class="page-intro glass"><p class="eyebrow">Made by me</p><h1 id="creations-title">創作內容</h1><p>把腦海裡的畫面一點一點實現。這裡會慢慢放上我的文字、圖片與其他創作。</p></div>
+      <div class="items-grid" id="creations-list"></div>
+    </section>
+
+    <section class="view" id="view-about" aria-labelledby="about-title" hidden>
+      <div class="page-intro glass"><p class="eyebrow">A little about me</p><h1 id="about-title">關於我</h1><p>你好，很高興在這裡遇見你。</p></div>
+      <div class="about-layout">
+        <article class="about-card glass"><div class="about-symbol" aria-hidden="true">☁</div><p class="eyebrow">Curious by nature</p><h2>一個喜歡收集靈感的人</h2><p>我喜歡觀察生活裡細小又可愛的瞬間，也喜歡把突然冒出的念頭記下來。這個網站是我的數位手帳，記錄還在路上的點子與完成中的作品。</p></article>
+        <article class="about-card glass"><p class="eyebrow">My little note</p><h2>關於這個空間</h2><p>有些事情還沒完成，有些喜歡的東西想留給未來的自己，也有一些作品值得分享。希望這裡能自由地變化，慢慢長成最像我的樣子。</p><p>如果某個項目讓你有共鳴，歡迎在卡片下方留言告訴我。每一份交流都是新的靈感。</p></article>
+      </div>
+    </section>
+
+    <section class="view" id="view-unknown" aria-labelledby="unknown-title" hidden>
+      <div class="mystery glass"><div class="mystery-content"><div class="mystery-star" aria-hidden="true">✧</div><p class="eyebrow">Something is on its way</p><h1 id="unknown-title">未名之境</h1><p>這裡暫時還沒有名字，也還沒準備好揭曉。<br>一個新的篇章正在遠方醞釀，請稍後再來看看。</p><span class="tag">施工中 · 敬請期待</span></div></div>
+    </section>
   </main>
+  <footer class="shell">用好奇心開始，讓靈感繼續發光。 <span aria-hidden="true">✦</span></footer>
 
   <script>
-    document.getElementById("welcome-button").addEventListener("click", () => {
-      window.alert("歡迎來到我的網頁！很高興你來看看 ✨");
+    /*
+      ✎ 日後新增內容的方法：
+      1. 在下方 ideasData、favoritesData 或 creationsData 陣列中，複製一個 { ... } 範例項目。
+      2. 貼在同一個陣列的最後一個項目後面，記得在前一項與新項目之間加逗號。
+      3. 修改 title（標題）、description（文字）、tag（分類）。
+      4. image 填圖片網址；不需要圖片就保留空字串 ""。
+      5. download 填文件下載網址或相對路徑（例如 "files/my-note.pdf"）；不需要下載就保留空字串 ""。
+      圖片和文件都可以使用網站內的相對路徑，或完整的 https:// 網址。
+    */
+
+    // 「各種未完成點子」資料：複製項目即可新增卡片，文字直接放在引號內。
+    const ideasData = [
+      { title: "把日常寫成一封信", description: "每天記下一個值得珍藏的小瞬間，月底再把它們整理成寫給自己的信。想試試看用不同顏色標記心情。", tag: "生活練習", image: "", download: "" },
+      { title: "夢想中的閱讀角落", description: "一個有柔和燈光、喜歡的書和一杯熱茶的小角落。先從整理房間的一小塊空間開始吧。", tag: "空間提案", image: "", download: "" }
+    ];
+
+    // 「收藏」資料：可以收藏文章、網站、句子或任何想留存的東西，也可加圖片或 PDF 連結。
+    const favoritesData = [
+      { title: "留給自己的提醒", description: "「慢慢來也沒關係，只要你沒有放棄和自己一起前進。」——適合在需要喘口氣的時候重新讀一次。", tag: "喜歡的句子", image: "", download: "" },
+      { title: "週末靈感清單", description: "找一間沒去過的咖啡店、走一條陌生的小路、拍下三個喜歡的顏色。把平凡的週末過得有一點新鮮。", tag: "生活收藏", image: "", download: "" }
+    ];
+
+    // 「創作內容」資料：放上你的文字、作品圖片網址，或可下載的 PDF／其他檔案路徑。
+    const creationsData = [
+      { title: "窗邊的午後", description: "陽光走得很慢，停在窗台上。杯子裡的茶還有一點熱氣，而我終於允許自己，什麼也不急著完成。", tag: "短文", image: "", download: "" },
+      { title: "靈感手帳・第一頁", description: "一份整理靈感的小小練習，記下今天看到的顏色、聽到的聲音，和想帶去明天的一個念頭。", tag: "手帳練習", image: "", download: "" }
+    ];
+
+    const collections = {
+      ideas: { label: "未完成點子", data: ideasData, target: "ideas-list" },
+      favorites: { label: "收藏", data: favoritesData, target: "favorites-list" },
+      creations: { label: "創作內容", data: creationsData, target: "creations-list" }
+    };
+    const pageNames = { home: "主頁", ideas: "各種未完成點子", favorites: "收藏", creations: "創作內容", about: "關於我", unknown: "未名分頁" };
+    const formEndpoint = "https://formspree.io/f/mnpddwbn";
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
+    }
+    function safeURL(value) {
+      const url = String(value ?? "").trim();
+      if (!url) return "";
+      if (/^(https?:\/\/|\/|\.\/|\.\.\/|#)/i.test(url) && !/^javascript:/i.test(url)) return url;
+      return "";
+    }
+    function renderItem(item, sectionName) {
+      const title = escapeHTML(item.title);
+      const imageURL = safeURL(item.image);
+      const downloadURL = safeURL(item.download);
+      const image = imageURL ? `<img class="item-image" src="${escapeHTML(imageURL)}" alt="${title}" loading="lazy">` : "";
+      const download = downloadURL ? `<a class="text-link" href="${escapeHTML(downloadURL)}" download>下載附件 ↓</a>` : "";
+      return `<article class="item-card">${image}<div class="item-body">
+        <div class="item-meta"><span class="tag">${escapeHTML(sectionName)}</span><span class="tag">${escapeHTML(item.tag || "靈感")}</span></div>
+        <h2>${title}</h2><p class="item-description">${escapeHTML(item.description)}</p>
+        ${download ? `<div class="item-actions">${download}</div>` : ""}
+        <details class="contact-box"><summary>對這個項目留言</summary>
+          <form class="contact-form" action="${formEndpoint}" method="POST">
+            <input type="hidden" name="項目標題" value="${title}">
+            <input type="hidden" name="項目分類" value="${escapeHTML(sectionName)}">
+            <label>訪客稱呼<input type="text" name="稱呼" autocomplete="name" placeholder="想怎樣稱呼你？" required maxlength="80"></label>
+            <label>留言內容<textarea name="留言" placeholder="寫下你的想法……" required maxlength="3000"></textarea></label>
+            <button class="primary-button" type="submit">送出留言</button>
+            <p class="form-note">留言會透過 Formspree 傳送。請勿在此填寫敏感個人資料。</p>
+          </form>
+        </details>
+      </div></article>`;
+    }
+    function renderCollections() {
+      Object.values(collections).forEach(collection => {
+        const target = document.getElementById(collection.target);
+        target.innerHTML = collection.data.map(item => renderItem(item, collection.label)).join("");
+      });
+      const previews = Object.entries(collections).flatMap(([page, collection]) => collection.data.slice(0, 1).map(item => ({ page, collection, item })));
+      document.getElementById("home-previews").innerHTML = previews.map(({ page, collection, item }) => `
+        <button class="preview-card" type="button" data-go="${page}">
+          <span class="preview-label">${escapeHTML(collection.label)} · 精選</span>
+          <h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p>
+        </button>`).join("");
+    }
+
+    function showPage(page) {
+      if (!pageNames[page]) return;
+      document.querySelectorAll(".view").forEach(view => { view.hidden = view.id !== `view-${page}`; });
+      document.querySelectorAll(".nav-link").forEach(link => {
+        if (link.dataset.page === page) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+      document.title = `${pageNames[page]}｜靈感收集所`;
+      document.getElementById("site-navigation").classList.remove("open");
+      document.getElementById("menu-toggle").setAttribute("aria-expanded", "false");
+      document.getElementById("menu-toggle").setAttribute("aria-label", "開啟導覽選單");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    renderCollections();
+    document.addEventListener("click", event => {
+      const nav = event.target.closest("[data-page]");
+      const go = event.target.closest("[data-go]");
+      const brand = event.target.closest("[data-page-link]");
+      if (nav) showPage(nav.dataset.page);
+      if (go) showPage(go.dataset.go);
+      if (brand) showPage("home");
+    });
+
+    const root = document.documentElement;
+    const themeButton = document.getElementById("theme-toggle");
+    let savedTheme = "dark";
+    try { savedTheme = localStorage.getItem("inspiration-theme") || "dark"; } catch (error) { /* 私隱瀏覽模式下仍可正常切換主題。 */ }
+    root.dataset.theme = savedTheme === "light" ? "light" : "dark";
+    function updateThemeButton() {
+      const light = root.dataset.theme === "light";
+      themeButton.setAttribute("aria-label", light ? "切換至深色主題" : "切換至淺色主題");
+      themeButton.innerHTML = `<span aria-hidden="true">${light ? "☾" : "☼"}</span>`;
+      document.querySelector('meta[name="theme-color"]').content = light ? "#edf4ff" : "#07152f";
+    }
+    updateThemeButton();
+    themeButton.addEventListener("click", () => {
+      root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
+      try { localStorage.setItem("inspiration-theme", root.dataset.theme); } catch (error) { /* 主題仍會在本次瀏覽期間生效。 */ }
+      updateThemeButton();
+    });
+
+    const menuButton = document.getElementById("menu-toggle");
+    const navigation = document.getElementById("site-navigation");
+    menuButton.addEventListener("click", () => {
+      const isOpen = navigation.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "關閉導覽選單" : "開啟導覽選單");
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        navigation.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "開啟導覽選單");
+      }
     });
   </script>
 </body>
