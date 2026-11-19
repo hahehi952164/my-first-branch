@@ -53,13 +53,13 @@ my-first-branch/
 
 | 更新時間（香港時間） | 改動說明 | 改動咗邊幾個檔案 |
 | --- | --- | --- |
+| 19/11/2026 12:44:23 | Add modular detail page download button | `detail-download.js` |
+| 19/11/2026 12:40:57 | 📝 Update README changelog | — |
 | 19/11/2026 12:40:45 | Fix plan document download path | `idea.js` |
 | 19/11/2026 12:39:10 | 📝 Update README changelog | — |
 | 19/11/2026 12:38:56 | Update idea.js | `idea.js` |
 | 19/11/2026 12:32:36 | 📝 Update README changelog | — |
 | 19/11/2026 12:32:23 | Trim and validate commit hashes before diff-tree | `.github/scripts/update-readme.mjs` |
 | 19/11/2026 12:30:24 | Create auto-update-readme.yml | `.github/workflows/auto-update-readme.yml` |
-| 19/11/2026 12:29:26 | Add README change log automation script | `.github/scripts/update-readme.mjs` |
-| 19/11/2026 12:25:09 | Load chart.js beside wealth.js | `index.html` |
 
 <!-- AUTO-LOG-END -->
