@@ -5,9 +5,9 @@ async function run() {
   const rssUrl = 'https://google.com';
   const rssRes = await fetch(rssUrl);
   const xml = await rssRes.text();
-  const titles = [...xml.matchAll(/<title>(.*?)<\/title>/g)]
+  const titles = Array.from(xml.matchAll(/<title>(.*?)<\/title>/g))
     .slice(1, 7)
-    .map(m => m[1].replace(/<!\[CDATA\[|\]\]>/g, ''))
+    .map(m => m.at(1).replace(/<!\[CDATA\[|\]\]>/g, ''))
     .join('\n- ');
 
   // 2. 呼叫 GitHub Models 免費 AI 撰寫香港廣東話市場觀察
@@ -40,20 +40,22 @@ async function run() {
   }
 
   const aiData = await aiRes.json();
-  const reply = aiData.choices[0].message.content.trim();
+  const reply = aiData.choices.at(0).message.content.trim();
   const blocks = reply.split(/\n\s*\n/);
 
   const today = new Date().toLocaleDateString('zh-HK', { timeZone: 'Asia/Hong_Kong' });
-  const rawTitle = (blocks[0] || 'Bitcoin 每日市場快訊').replace(/^[#*-\s]+/, '').trim();
-  const summary = (blocks[1] || 'AI 為你總結今日最新加密貨幣市場動態。').trim();
+  const rawTitle = (blocks.at(0) || 'Bitcoin 每日市場快訊').replace(/^[#*-\s]+/, '').trim();
+  const summary = (blocks.at(1) || 'AI 為你總結今日最新加密貨幣市場動態。').trim();
   const fullContent = blocks.slice(2).join('\n\n').trim() || summary;
 
   // 3. 讀取現有 wealth.js 並將新文章插入最頂端
   const fileContent = fs.readFileSync('wealth.js', 'utf8');
-  const match = fileContent.match(/window\.wealthData\s*=\s*(\[[\s\S]*\]);?/);
+  const startIdx = fileContent.indexOf('[');
+  const endIdx = fileContent.lastIndexOf(']');
   let list = [];
-  if (match && match[1]) {
-    list = new Function(`return ${match[1]}`)();
+  if (startIdx !== -1 && endIdx !== -1) {
+    const arrayText = fileContent.slice(startIdx, endIdx + 1);
+    list = new Function(`return ${arrayText}`)();
   }
 
   list.unshift({
