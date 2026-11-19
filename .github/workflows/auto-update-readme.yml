@@ -1,0 +1,31 @@
+name: Auto Update README Log
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'Update README')"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 15
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node .github/scripts/update-readme.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@://github.com"
+          git add README.md
+          git diff --staged --quiet || git commit -m "📝 Update README changelog"
+          git push
