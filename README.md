@@ -53,13 +53,13 @@ my-first-branch/
 
 | 更新時間（香港時間） | 改動說明 | 改動咗邊幾個檔案 |
 | --- | --- | --- |
+| 19/11/2026 16:42:39 | Update index.html | `index.html` |
+| 19/11/2026 16:42:06 | 📝 Update README changelog | — |
 | 19/11/2026 16:41:57 | Add script tag for game.js in index.html | `index.html` |
 | 19/11/2026 16:39:06 | 📝 Update README changelog | — |
 | 19/11/2026 16:38:58 | Add modular Cantonese text adventure game | `game.js` |
 | 19/11/2026 13:18:39 | 📝 Update README changelog | — |
 | 19/11/2026 13:18:31 | Remove chart observer and make rendering idempotent | `chart.js` |
 | 19/11/2026 13:18:12 | Make detail download rendering event-driven | `detail-download.js` |
-| 19/11/2026 12:52:32 | 📝 Update README changelog | — |
-| 19/11/2026 12:52:24 | Prevent detail download render loop | `detail-download.js` |
 
 <!-- AUTO-LOG-END -->
