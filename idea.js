@@ -19,7 +19,7 @@ window.ideaData = [
     description: "諗咗幾年都未實行的一些想法",
     tag: "重要計劃",
     image: "",
-    download: "/files/ideas/Test.docx",
+    download: "files/ideas/Test.docx",
     downloadLabel: "📄 下載 Word 企劃書"
   }
 ];
