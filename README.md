@@ -53,13 +53,13 @@ my-first-branch/
 
 | 更新時間（香港時間） | 改動說明 | 改動咗邊幾個檔案 |
 | --- | --- | --- |
+| 19/11/2026 13:18:31 | Remove chart observer and make rendering idempotent | `chart.js` |
+| 19/11/2026 13:18:12 | Make detail download rendering event-driven | `detail-download.js` |
+| 19/11/2026 12:52:32 | 📝 Update README changelog | — |
 | 19/11/2026 12:52:24 | Prevent detail download render loop | `detail-download.js` |
 | 19/11/2026 12:46:23 | 📝 Update README changelog | — |
 | 19/11/2026 12:46:15 | Load detail-download.js from index.html | `index.html` |
 | 19/11/2026 12:44:29 | 📝 Update README changelog | — |
 | 19/11/2026 12:44:23 | Add modular detail page download button | `detail-download.js` |
-| 19/11/2026 12:40:57 | 📝 Update README changelog | — |
-| 19/11/2026 12:40:45 | Fix plan document download path | `idea.js` |
-| 19/11/2026 12:39:10 | 📝 Update README changelog | — |
 
 <!-- AUTO-LOG-END -->
