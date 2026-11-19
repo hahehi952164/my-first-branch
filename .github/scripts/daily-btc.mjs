@@ -20,14 +20,16 @@ async function run() {
 今日新聞標題：
 - ${titles || 'Bitcoin 市場今日維持震盪走勢，投資者關注宏觀經濟數據。'}`;
 
-  const aiRes = await fetch('https://azure.com', {
+  const aiRes = await fetch('https://github.ai', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
+      'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28'
     },
     body: JSON.stringify({
-      model: 'gpt-4o-mini',
+      model: 'openai/gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.7
     })
@@ -42,15 +44,15 @@ async function run() {
   const blocks = reply.split(/\n\s*\n/);
 
   const today = new Date().toLocaleDateString('zh-HK', { timeZone: 'Asia/Hong_Kong' });
-  const rawTitle = blocks[0]?.replace(/^[#*-\s]+/, '').trim() || 'Bitcoin 每日市場快訊';
-  const summary = blocks[1]?.trim() || 'AI 為你總結今日最新加密貨幣市場動態。';
+  const rawTitle = (blocks[0] || 'Bitcoin 每日市場快訊').replace(/^[#*-\s]+/, '').trim();
+  const summary = (blocks[1] || 'AI 為你總結今日最新加密貨幣市場動態。').trim();
   const fullContent = blocks.slice(2).join('\n\n').trim() || summary;
 
   // 3. 讀取現有 wealth.js 並將新文章插入最頂端
   const fileContent = fs.readFileSync('wealth.js', 'utf8');
   const match = fileContent.match(/window\.wealthData\s*=\s*(\[[\s\S]*\]);?/);
   let list = [];
-  if (match) {
+  if (match && match[1]) {
     list = new Function(`return ${match[1]}`)();
   }
 
