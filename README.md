@@ -46,3 +46,20 @@ my-first-branch/
 直接以瀏覽器開啟 `index.html`，即可瀏覽網站。
 
 若使用 VS Code，建議安裝 Live Server 擴充功能，並以「Open with Live Server」啟動預覽。
+
+---
+
+<!-- AUTO-LOG-START -->
+
+| 更新時間（香港時間） | 改動說明 | 改動咗邊幾個檔案 |
+| --- | --- | --- |
+| 19/11/2026 12:32:23 | Trim and validate commit hashes before diff-tree | `.github/scripts/update-readme.mjs` |
+| 19/11/2026 12:30:24 | Create auto-update-readme.yml | `.github/workflows/auto-update-readme.yml` |
+| 19/11/2026 12:29:26 | Add README change log automation script | `.github/scripts/update-readme.mjs` |
+| 19/11/2026 12:25:09 | Load chart.js beside wealth.js | `index.html` |
+| 19/11/2026 12:24:07 | Add responsive themed TradingView chart module | `chart.js` |
+| 19/11/2026 12:19:38 | 🤖 AI 自動發佈今日 Bitcoin 市場觀察 | `wealth.js` |
+| 19/11/2026 12:17:59 | Fix wealth data parsing and use Google News RSS | `.github/scripts/daily-btc.mjs` |
+| 19/11/2026 12:11:27 | Handle API errors in daily Bitcoin news script | `.github/scripts/daily-btc.mjs` |
+
+<!-- AUTO-LOG-END -->
