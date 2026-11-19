@@ -20,16 +20,14 @@ async function run() {
 今日新聞標題：
 - ${titles || 'Bitcoin 市場今日維持震盪走勢，投資者關注宏觀經濟數據。'}`;
 
-  const aiRes = await fetch('https://github.ai', {
+  const aiRes = await fetch('https://azure.com', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
-      'Accept': 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28'
+      'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
     },
     body: JSON.stringify({
-      model: 'openai/gpt-4o-mini',
+      model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.7
     })
