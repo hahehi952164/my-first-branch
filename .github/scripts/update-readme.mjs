@@ -53,8 +53,23 @@ const fields = logOutput.split('\0');
 const commits = [];
 
 for (let index = 0; index + 2 < fields.length; index += 3) {
-  const [hash, date, subject] = fields.slice(index, index + 3);
-  if (hash && date) commits.push({ hash, date, subject });
+  const hash = (fields[index] ?? '').trim();
+  const date = (fields[index + 1] ?? '').trim();
+  const subject = (fields[index + 2] ?? '').trim();
+
+  // Accept only complete Git SHA-1 or SHA-256 hashes before passing them to git.
+  if (!/^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(hash)) {
+    if (hash || date || subject) {
+      console.warn(`略過格式無效嘅提交雜湊：${JSON.stringify(hash)}`);
+    }
+    continue;
+  }
+  if (!date) {
+    console.warn(`略過缺少提交時間嘅紀錄：${hash}`);
+    continue;
+  }
+
+  commits.push({ hash, date, subject });
 }
 
 const rows = commits.map(({ hash, date, subject }) => {
