@@ -1,0 +1,37 @@
+name: Daily Bitcoin News
+
+on:
+  schedule:
+    # 每日香港時間朝早 8:00 (UTC 00:00) 自動執行
+    - cron: '0 0 * * *'
+  # 允許你隨時手動撳掣測試
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  models: read
+
+jobs:
+  generate-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate Daily Bitcoin Summary
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/daily-btc.mjs
+
+      - name: Commit and push updated wealth.js
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@://github.com"
+          git add wealth.js
+          git diff --staged --quiet || git commit -m "🤖 AI 自動發佈今日 Bitcoin 市場觀察"
+          git push
