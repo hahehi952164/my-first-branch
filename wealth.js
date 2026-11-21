@@ -1,6 +1,14 @@
 // 「發達大計」資料（由 GitHub Actions 每日自動更新）
 window.wealthData = [
   {
+    "title": "【21/11/2026】Bitcoin 每日速報：現價 $59,018.95 USD（24h 4.96%）",
+    "description": "今日 BTC 現價約 $59,018.95 USD（約 HK$462,634.16），過去 24 小時📉 跌咗 4.96%。",
+    "fullContent": "📊 今日市場數據速覽\n• 美元現價：$59,018.95 USD\n• 港元現價：約 HK$462,634.16\n• 24 小時走勢：📉 跌咗 4.96%\n\n💬 今日小點評\n今日個市稍為回調，當係畀機會大家深呼吸、睇定啲先再算！\n\n📰 最新 Bitcoin 焦點新聞\n1. Google News\n2. Bitcoin falls below $60,000 level - Reuters\n3. Institutional Holdings of Bitcoin ETPs Reach New All-Time High - Galaxy\n4. Wells Fargo doubles bitcoin ETF exposure as institutions pile in - Yahoo Finance\n5. Institutions are Piling Into Bitcoin ETFs, Pushing Holdings to a Record - Bitcoin Magazine",
+    "tag": "每日自動速報",
+    "image": "",
+    "download": ""
+  },
+  {
     "title": "【20/11/2026】Bitcoin 每日速報：現價 $62,023.89 USD（24h 1.67%）",
     "description": "今日 BTC 現價約 $62,023.89 USD（約 HK$486,367.98），過去 24 小時📉 跌咗 1.67%。",
     "fullContent": "📊 今日市場數據速覽\n• 美元現價：$62,023.89 USD\n• 港元現價：約 HK$486,367.98\n• 24 小時走勢：📉 跌咗 1.67%\n\n💬 今日小點評\n今日個市稍為回調，當係畀機會大家深呼吸、睇定啲先再算！\n\n📰 最新 Bitcoin 焦點新聞\n1. Google News\n2. Strategy Is Worth Less Than Its Bitcoin, Trump Media May Have To Sell - Investor's Business Daily\n3. Bitcoin slides to $62,000 following liquidation cascade, then rebounds slightly - CNBC\n4. Gold and Bitcoin Are Falling. Peter Schiff Sees Opportunities for Both - Yahoo Finance\n5. Bitcoin Bounces Back Into Green Ahead of Anthropic IPO - Bloomberg.com",
