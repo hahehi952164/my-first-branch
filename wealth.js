@@ -1,6 +1,14 @@
 // 「發達大計」資料（由 GitHub Actions 每日自動更新）
 window.wealthData = [
   {
+    "title": "【22/11/2026】Bitcoin 每日速報：現價 $60,171.32 USD（24h 2.16%）",
+    "description": "今日 BTC 現價約 $60,171.32 USD（約 HK$471,653.25），過去 24 小時📈 升咗 2.16%。",
+    "fullContent": "📊 今日市場數據速覽\n• 美元現價：$60,171.32 USD\n• 港元現價：約 HK$471,653.25\n• 24 小時走勢：📈 升咗 2.16%\n\n💬 今日小點評\n今日個市有啲起色，離發達大計又行近一步！不過記得保持冷靜，切忌盲目高追。\n\n📰 最新 Bitcoin 焦點新聞\n新聞源暫時未有回應，稍後再查看最新消息。",
+    "tag": "每日自動速報",
+    "image": "",
+    "download": ""
+  },
+  {
     "title": "【21/11/2026】Bitcoin 每日速報：現價 $59,018.95 USD（24h 4.96%）",
     "description": "今日 BTC 現價約 $59,018.95 USD（約 HK$462,634.16），過去 24 小時📉 跌咗 4.96%。",
     "fullContent": "📊 今日市場數據速覽\n• 美元現價：$59,018.95 USD\n• 港元現價：約 HK$462,634.16\n• 24 小時走勢：📉 跌咗 4.96%\n\n💬 今日小點評\n今日個市稍為回調，當係畀機會大家深呼吸、睇定啲先再算！\n\n📰 最新 Bitcoin 焦點新聞\n1. Google News\n2. Bitcoin falls below $60,000 level - Reuters\n3. Institutional Holdings of Bitcoin ETPs Reach New All-Time High - Galaxy\n4. Wells Fargo doubles bitcoin ETF exposure as institutions pile in - Yahoo Finance\n5. Institutions are Piling Into Bitcoin ETFs, Pushing Holdings to a Record - Bitcoin Magazine",
