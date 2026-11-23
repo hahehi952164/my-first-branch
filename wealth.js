@@ -1,6 +1,14 @@
 // 「發達大計」資料（由 GitHub Actions 每日自動更新）
 window.wealthData = [
   {
+    "title": "【23/11/2026】Bitcoin 每日速報：現價 $61,050.75 USD（24h 1.57%）",
+    "description": "今日 BTC 現價約 $61,050.75 USD（約 HK$478,657.23），過去 24 小時📈 升咗 1.57%。",
+    "fullContent": "📊 今日市場數據速覽\n• 美元現價：$61,050.75 USD\n• 港元現價：約 HK$478,657.23\n• 24 小時走勢：📈 升咗 1.57%\n\n💬 今日小點評\n今日個市有啲起色，離發達大計又行近一步！不過記得保持冷靜，切忌盲目高追。\n\n📰 最新 Bitcoin 焦點新聞\n1. Google News\n2. Bitcoin rises after falling to two-year low - Reuters\n3. Trump’s Crypto Nightmare Is Suddenly Coming True - Forbes\n4. Better Buy: Bitcoin vs. Ethereum - The Motley Fool\n5. Bitcoin briefly drops to $17K on Kraken, exchange upholds trades - TradingView",
+    "tag": "每日自動速報",
+    "image": "",
+    "download": ""
+  },
+  {
     "title": "【22/11/2026】Bitcoin 每日速報：現價 $60,171.32 USD（24h 2.16%）",
     "description": "今日 BTC 現價約 $60,171.32 USD（約 HK$471,653.25），過去 24 小時📈 升咗 2.16%。",
     "fullContent": "📊 今日市場數據速覽\n• 美元現價：$60,171.32 USD\n• 港元現價：約 HK$471,653.25\n• 24 小時走勢：📈 升咗 2.16%\n\n💬 今日小點評\n今日個市有啲起色，離發達大計又行近一步！不過記得保持冷靜，切忌盲目高追。\n\n📰 最新 Bitcoin 焦點新聞\n新聞源暫時未有回應，稍後再查看最新消息。",
