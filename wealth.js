@@ -1,6 +1,14 @@
 // 「發達大計」資料（由 GitHub Actions 每日自動更新）
 window.wealthData = [
   {
+    "title": "【27/11/2026】Bitcoin 每日速報：現價 $60,632.94 USD（24h 0.32%）",
+    "description": "今日 BTC 現價約 $60,632.94 USD（約 HK$475,221.74），過去 24 小時📈 升咗 0.32%。",
+    "fullContent": "📊 今日市場數據速覽\n• 美元現價：$60,632.94 USD\n• 港元現價：約 HK$475,221.74\n• 24 小時走勢：📈 升咗 0.32%\n\n💬 今日小點評\n今日個市有啲起色，離發達大計又行近一步！不過記得保持冷靜，切忌盲目高追。\n\n📰 最新 Bitcoin 焦點新聞\n1. Google News\n2. Liquidity peaked. First bitcoin fell, then gold and now stocks. Here’s how long the downturn will last, according to this veteran strategist. - MarketWatch\n3. Bitcoin miner CleanSpark swings to $987 million annual loss as BTC production declines - The Block\n4. A 30% Bitcoin crash hasn't shaken this asset manager's $1.6 million call - Yahoo Finance\n5. Is Bitcoin a Good Investment for Building Wealth After a 50% Drop? - Yahoo Finance",
+    "tag": "每日自動速報",
+    "image": "",
+    "download": ""
+  },
+  {
     "title": "【26/11/2026】Bitcoin 每日速報：現價 $60,420.65 USD（24h 1.43%）",
     "description": "今日 BTC 現價約 $60,420.65 USD（約 HK$473,671.78），過去 24 小時📈 升咗 1.43%。",
     "fullContent": "📊 今日市場數據速覽\n• 美元現價：$60,420.65 USD\n• 港元現價：約 HK$473,671.78\n• 24 小時走勢：📈 升咗 1.43%\n\n💬 今日小點評\n今日個市有啲起色，離發達大計又行近一步！不過記得保持冷靜，切忌盲目高追。\n\n📰 最新 Bitcoin 焦點新聞\n1. Google News\n2. It’s ‘Coming’—Massive AI Crash Predicted To Trigger $25 Trillion Bitcoin Price Boom - Forbes\n3. Bitcoin Surrenders Most Gains Amid Sustained ETF Outflows - Bloomberg\n4. Bitcoin and Tokenized Gold Trading in Euros Rises When Eurozone Yields Outpace US - Yahoo Finance\n5. Crypto Market Today, Nov. 25: Bitcoin, Ethereum, and Solana as Short Liquidations Fuel Fragile Rebound - Yahoo Finance",
